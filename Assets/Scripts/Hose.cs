@@ -13,7 +13,7 @@ public class Hose : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * 100f;
-        transform.up = rb.velocity;
+        rb.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * 10f;
+        //transform.up = rb.velocity;
     }
 }
