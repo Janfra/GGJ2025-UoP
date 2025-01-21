@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc7456bad108854c91e728ccd529ac0, type: 3}
   m_Name: Water Stream Gun
   m_EditorClassIdentifier: 
-  range: 4
+  damage: 0
+  range: 6
   maxRangeDelay: 1.2
   minRadius: 0.2
   maxRadius: 0.34
