@@ -10,6 +10,9 @@ public class InputMovement : MonoBehaviour
     private float accelerationRate;
     [SerializeField]
     private float deccelerationRate;
+    [Range(0.0f, 0.99f)]
+    [SerializeField]
+    private float sharpTurnSpeedReduction;
     [SerializeField]
     private float maxSpeed;
     [Range(-1f, 1f)]
@@ -22,6 +25,7 @@ public class InputMovement : MonoBehaviour
     private float speed;
     private float decceleration;
 
+    private Vector2 instantInput;
     private Vector2 input;
     private float xInput;
     private float yInput;
@@ -41,9 +45,10 @@ public class InputMovement : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
         input = new Vector2(xInput, yInput);
-        UpdateSpeed();
+        instantInput = new Vector2(Input.GetAxis("Instant Horizontal"), Input.GetAxis("Instant Vertical"));
 
-        if (input.sqrMagnitude > 0)
+        UpdateSpeed();
+        if (instantInput.sqrMagnitude > 0)
         {
             AddInputVelocity();
         }
@@ -55,7 +60,7 @@ public class InputMovement : MonoBehaviour
 
     private void UpdateSpeed()
     {
-        if (input.sqrMagnitude > 0)
+        if (instantInput.sqrMagnitude > 0.0f)
         {
             speed += accelerationRate * Time.deltaTime;
             speed = Mathf.Min(speed, maxSpeed);
@@ -63,7 +68,7 @@ public class InputMovement : MonoBehaviour
         }
         else
         {
-            speed -= deccelerationRate * Time.deltaTime;
+            speed -= (deccelerationRate * deccelerationRate) * Time.deltaTime;
             decceleration += deccelerationRate * Time.deltaTime;
             speed = Mathf.Max(0.1f, speed);
         }
@@ -73,7 +78,7 @@ public class InputMovement : MonoBehaviour
     {
         Vector2 velocity = rb.velocity;
 
-        float inputDot = Vector2.Dot(velocity.normalized, input.normalized);
+        float inputDot = Vector2.Dot(velocity.normalized, instantInput.normalized);
         Vector2 inputVelocity = Vector2.zero;
         if (inputDot >= turnTolerance)
         {
@@ -81,8 +86,8 @@ public class InputMovement : MonoBehaviour
         }
         else
         {
-            speed *= 0.5f;
-            inputVelocity = input.normalized * speed;
+            speed *= sharpTurnSpeedReduction;
+            inputVelocity = instantInput.normalized * speed;
         }
 
         velocity = inputVelocity;
