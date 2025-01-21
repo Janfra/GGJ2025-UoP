@@ -10,14 +10,10 @@ public class InputMovement : MonoBehaviour
     private float accelerationRate;
     [SerializeField]
     private float deccelerationRate;
-    [Range(0.0f, 0.99f)]
     [SerializeField]
-    private float sharpTurnSpeedReduction;
+    private float turnSpeed;
     [SerializeField]
     private float maxSpeed;
-    [Range(-1f, 1f)]
-    [SerializeField]
-    private float turnTolerance;
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -25,10 +21,9 @@ public class InputMovement : MonoBehaviour
     private float speed;
     private float decceleration;
 
+    private Vector2 lastFrameInput;
     private Vector2 instantInput;
     private Vector2 input;
-    private float xInput;
-    private float yInput;
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +37,7 @@ public class InputMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical");
-        input = new Vector2(xInput, yInput);
+        lastFrameInput = instantInput;
         instantInput = new Vector2(Input.GetAxis("Instant Horizontal"), Input.GetAxis("Instant Vertical"));
 
         UpdateSpeed();
@@ -55,6 +48,7 @@ public class InputMovement : MonoBehaviour
         else
         {
             RemoveVelocity(); 
+            input = Vector2.Lerp(input, Vector2.zero, decceleration);
         }
     }
 
@@ -78,17 +72,8 @@ public class InputMovement : MonoBehaviour
     {
         Vector2 velocity = rb.velocity;
 
-        float inputDot = Vector2.Dot(velocity.normalized, instantInput.normalized);
-        Vector2 inputVelocity = Vector2.zero;
-        if (inputDot >= turnTolerance)
-        {
-            inputVelocity = input.normalized * speed;
-        }
-        else
-        {
-            speed *= sharpTurnSpeedReduction;
-            inputVelocity = instantInput.normalized * speed;
-        }
+        input = Vector2.Lerp(input, instantInput, turnSpeed * Time.deltaTime);
+        Vector2 inputVelocity = input.normalized * speed;
 
         velocity = inputVelocity;
         if (velocity.sqrMagnitude > maxSpeed * maxSpeed)
