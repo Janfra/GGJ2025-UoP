@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DirtTrail : MonoBehaviour
 {
-    public GameObject dirt;
+    public GameObject dirtPrefab;
 
     private Vector3 lastPosition;
+    private int index = 0;
 
     private void Start()
     {
@@ -17,7 +18,9 @@ public class DirtTrail : MonoBehaviour
     {
         if ((lastPosition - transform.position).sqrMagnitude > 0.1f)
         {
-            Instantiate(dirt, transform.position, Quaternion.Euler(0f, 0f, Random.value * 360f));
+            GameObject dirt = Instantiate(dirtPrefab, new(transform.position.x, transform.position.y), Quaternion.Euler(0f, 0f, Random.value * 360f));
+            dirt.GetComponent<SpriteRenderer>().sortingOrder = index;
+            index++;
             lastPosition = transform.position;
         }
 
