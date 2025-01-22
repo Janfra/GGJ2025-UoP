@@ -15,16 +15,7 @@ public class HoseSection : MonoBehaviour
     {
         if (collision.CompareTag("Retract"))
         {
-            rb.AddForce(Vector2.left * 500f);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Hose Lock") && transform.GetSiblingIndex() == 20)
-        {
-            transform.parent.GetChild(0).GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            Hose.speed = 0;
+            rb.AddForce((GameObject.Find("Fountain").transform.position - transform.position).normalized * 500f);
         }
     }
 
@@ -32,7 +23,15 @@ public class HoseSection : MonoBehaviour
     {
         if (collision.CompareTag("Hose Lock") && transform.GetSiblingIndex() == 20)
         {
-            transform.parent.GetChild(0).GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            Hose.rb.mass = 1f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hose Lock") && transform.GetSiblingIndex() == 20)
+        {
+            Hose.rb.mass = 99999f;
         }
     }
 }

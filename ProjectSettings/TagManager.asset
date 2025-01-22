@@ -11,11 +11,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fountain
   - Water
   - UI
   - Hose
-  - 
+  - Player
   - 
   - 
   - 
@@ -41,6 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1840872671
+    locked: 0
+  - name: Dirt
+    uniqueID: 2546671809
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

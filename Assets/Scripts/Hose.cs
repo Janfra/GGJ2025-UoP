@@ -7,8 +7,9 @@ public class Hose : MonoBehaviour
 {
     public static float speed = 5;
     public static float soap = 1f;
+    public static Rigidbody2D rb;
+    public Transform fountain;
 
-    private Rigidbody2D rb;
 
     private void Start()
     {
@@ -36,5 +37,18 @@ public class Hose : MonoBehaviour
             Destroy(collision.gameObject);
             soap -= 0.01f;
         }
+
+        //if (collision.CompareTag("Hose Lock"))
+        //{
+        //    rb.bodyType = RigidbodyType2D.Dynamic;
+        //}
     }
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Hose Lock"))
+    //    {
+    //        rb.bodyType = RigidbodyType2D.Kinematic;
+    //    }
+    //}
 }
