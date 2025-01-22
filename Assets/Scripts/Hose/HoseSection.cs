@@ -23,7 +23,10 @@ public class HoseSection : MonoBehaviour
     {
         if (collision.CompareTag("Hose Lock") && transform.GetSiblingIndex() == 20)
         {
-            Hose.rb.mass = 1f;
+            if (Player.rb)
+            {
+                Player.rb.mass = 1f;
+            }
         }
     }
 
@@ -31,7 +34,10 @@ public class HoseSection : MonoBehaviour
     {
         if (collision.CompareTag("Hose Lock") && transform.GetSiblingIndex() == 20)
         {
-            Hose.rb.mass = 99999f;
+            if (Player.rb)
+            {
+                Player.rb.mass = 99999f;
+            }
         }
     }
 }
