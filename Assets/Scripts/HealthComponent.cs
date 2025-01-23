@@ -5,6 +5,11 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour, IShootable
 {
     [SerializeField]
+    private PlayerScore playerScore;
+    [SerializeField]
+    private int onDeathScore = 5;
+
+    [SerializeField]
     private Animator animator;
     [SerializeField]
     private float health;
@@ -75,6 +80,12 @@ public class HealthComponent : MonoBehaviour, IShootable
 
     private void HandleDeath()
     {
+        if (!playerScore)
+        {
+            throw new System.NullReferenceException($"The player score tracker has not been set in the health component for {name}, please set it.");
+        }
+
+        playerScore.AddScore(onDeathScore);
         gameObject.SetActive(false);
     }
 }

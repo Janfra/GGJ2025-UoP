@@ -38,7 +38,7 @@ public class PathFollow : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
-        }
+        }   
     }
 }
     
