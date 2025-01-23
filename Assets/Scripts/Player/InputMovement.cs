@@ -14,9 +14,10 @@ public class InputMovement : MonoBehaviour
     private float turnSpeed;
     [SerializeField]
     private float maxSpeed;
-
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private Animator animator;
 
     private float speed;
     private float decceleration;
@@ -49,6 +50,26 @@ public class InputMovement : MonoBehaviour
         {
             RemoveVelocity(); 
             input = Vector2.Lerp(input, Vector2.zero, decceleration);
+        }
+
+        if (rb.velocity.sqrMagnitude == 0)
+        {
+            animator.SetBool("walking", false);
+        }
+        else if (rb.velocity.y > Mathf.Abs(rb.velocity.x))
+        {
+            animator.SetBool("walking", true);
+            animator.SetInteger("direction", 0);
+        }
+        else if (rb.velocity.y < -Mathf.Abs(rb.velocity.x))
+        {
+            animator.SetBool("walking", true);
+            animator.SetInteger("direction", 2);
+        }
+        else
+        {
+            animator.SetBool("walking", true);
+            animator.SetInteger("direction", 1);
         }
     }
 
