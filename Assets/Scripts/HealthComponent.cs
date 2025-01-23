@@ -28,11 +28,19 @@ public class HealthComponent : MonoBehaviour, IShootable
     {
         Debug.Log("ouch");
         health -= damage;
-        StartInvulnerabilityFrames();
-        
-        if (animator != null)
+
+        if (IsDead())
         {
-            StartDamagedAnimation();
+            // Replace with play animation that on event calls HandleDeath
+            HandleDeath();
+        }
+        else
+        {
+            StartInvulnerabilityFrames();
+            if (animator != null)
+            {
+                StartDamagedAnimation();
+            }
         }
     }
 
@@ -58,5 +66,15 @@ public class HealthComponent : MonoBehaviour, IShootable
 
         invulnerabilityRoutine = null;
         yield return null;
+    }
+
+    private bool IsDead()
+    {
+        return health > 0.0f;
+    }
+
+    private void HandleDeath()
+    {
+        gameObject.SetActive(false);
     }
 }
