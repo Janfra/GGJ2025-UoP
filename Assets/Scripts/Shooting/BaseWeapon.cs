@@ -17,6 +17,11 @@ public abstract class BaseWeapon : ScriptableObject
     public virtual void Terminate() { }
 
     public virtual void OnDrawGizmos() { }
+
+    private void OnDisable()
+    {
+        shooterData = null;
+    }
 }
 
 

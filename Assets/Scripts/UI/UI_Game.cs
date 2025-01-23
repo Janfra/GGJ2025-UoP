@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
@@ -10,6 +11,9 @@ public class UI_Game : MonoBehaviour
     public const string SCORE_NAME = "Score";
     public const string KILLCOUNT_NAME = "KillCount";
     public const string TIMER_NAME = "Timer";
+    public const string TOWNDIRT_NAME = "TownDirt";
+    public const string LOSTPOPUP_NAME = "LostPopup";
+    public const string RESTART_NAME = "Restart";
 
     [SerializeField]
     private UIDocument UI;
@@ -19,10 +23,15 @@ public class UI_Game : MonoBehaviour
     private bool ResetHighscoreOnStart = true;
     [SerializeField]
     private PlayTimeTracker playTimer;
+    [SerializeField]
+    private TownDirtTracker townDirtTracker;
 
     private Label scoreLabel;
     private Label killCountLabel;
     private Label timerLabel;
+    private ProgressBar townDirtProgress;
+    private VisualElement lostPopup;
+    private Button restartButton;
 
     private string highscoreSuffix = "";
     private string killHighscoreSuffix = "";
@@ -46,11 +55,23 @@ public class UI_Game : MonoBehaviour
         scoreLabel = root.Q<Label>(SCORE_NAME);
         killCountLabel = root.Q<Label>(KILLCOUNT_NAME);
         timerLabel = root.Q<Label>(TIMER_NAME);
+        townDirtProgress = root.Q<ProgressBar>(TOWNDIRT_NAME);
+        lostPopup = root.Q<VisualElement>(LOSTPOPUP_NAME);
+        restartButton = root.Q<Button>(RESTART_NAME);
+
+        lostPopup.style.display = DisplayStyle.None;
+
+        restartButton.clicked += OnRestart;
 
         playerScore.OnScored += UpdateScoreLabel;
         playerScore.OnKillAdded += UpdateKillCount;
         playerScore.OnNewHighscore += EnableHighscoreUI;
         playerScore.OnNewKillHighscore += EnableKillHighscoreUI;
+
+        townDirtTracker.maxDirtinessReached += OnGameFinished;
+        townDirtTracker.dirtinessRemoved += UpdateTownDirtProgress;
+        townDirtTracker.dirtinessAdded += UpdateTownDirtProgress;
+        townDirtProgress.highValue = townDirtTracker.MaxDirtiness;
     }
 
     private void Update()
@@ -63,10 +84,25 @@ public class UI_Game : MonoBehaviour
         }
     }
 
-    private void OnGameFinished()
+    private void UpdateTownDirtProgress(float dirtiness)
     {
+        townDirtProgress.value = dirtiness;
+    }
+
+    private void OnGameFinished(float dirtiness)
+    {
+        lostPopup.style.display = DisplayStyle.Flex;
         playerScore.AddScore(playTimer.GetTimerScore());
         playTimer.ResetTimer();
+        isPaused = true;
+    }
+
+    private void OnRestart()
+    {
+        playerScore.ClearScore();
+        // Just reload the scene for now
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
     private void UpdateScoreLabel(int newScore)

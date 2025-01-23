@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7048743665108074174}
+  - component: {fileID: 2201263206490414152}
   - component: {fileID: 1222072291408384538}
   - component: {fileID: 8915913878639583238}
   m_Layer: 0
-  m_Name: 800px-Muddy_Terrain_render
+  m_Name: Dirt
   m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +34,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2201263206490414152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323657628736316566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0ec9d4891980349a148f29e52468eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  townDirtTracker: {fileID: 11400000, guid: d248c7060e8de84488a1a6a555c15c48, type: 2}
+  dirtiness: 5
 --- !u!212 &1222072291408384538
 SpriteRenderer:
   m_ObjectHideFlags: 0
