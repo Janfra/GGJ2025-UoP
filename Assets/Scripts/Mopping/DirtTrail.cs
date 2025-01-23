@@ -23,26 +23,5 @@ public class DirtTrail : MonoBehaviour
             index++;
             lastPosition = transform.position;
         }
-
-        Vector3 movement = new();
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            movement += Vector3.right;
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            movement += Vector3.up;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            movement += Vector3.left;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            movement += Vector3.down;
-        }
-
-        transform.position += movement * Time.deltaTime * 2f;
     }
 }
