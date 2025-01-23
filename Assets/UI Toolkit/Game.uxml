@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Label tabindex="-1" text="Score: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" style="-unity-font-style: bold; font-size: 50px; -unity-text-outline-color: rgb(255, 255, 255); -unity-text-outline-width: 0.1px;" />
+    <ui:Label tabindex="-1" text="Timer:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Timer" style="font-size: 40px; -unity-font-style: bold; -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgb(255, 255, 255);" />
+    <ui:Label tabindex="-1" text="Score: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" style="-unity-font-style: bold; font-size: 30px; -unity-text-outline-color: rgb(255, 255, 255); -unity-text-outline-width: 0.1px;" />
     <ui:Label tabindex="-1" text="Kills: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="KillCount" style="font-size: 30px; -unity-font-style: bold; -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgb(255, 255, 255);" />
 </ui:UXML>
