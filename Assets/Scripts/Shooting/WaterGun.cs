@@ -101,7 +101,7 @@ public class WaterGun : BaseWeapon
 
     public override void OnDrawGizmos()
     {
-        if (shooterData == null)
+        if (shooterData == null || !shooterData.Transform)
         {
             return;
         }
