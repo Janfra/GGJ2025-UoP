@@ -80,7 +80,7 @@ public class UI_Game : MonoBehaviour
         {
             playTimer.TickTimer();
             TimeSpan timeSpan = TimeSpan.FromSeconds(playTimer.PlayTime);
-            timerLabel.text = $"Timer: {timeSpan.ToString("mm\\:ss")}";
+            timerLabel.text = $"{timeSpan.ToString("mm\\:ss")}";
         }
     }
 
@@ -107,12 +107,12 @@ public class UI_Game : MonoBehaviour
 
     private void UpdateScoreLabel(int newScore)
     {
-        scoreLabel.text = $"Score: {newScore}" + highscoreSuffix;
+        scoreLabel.text = $"{newScore}" + highscoreSuffix;
     }
 
     private void UpdateKillCount(int killCount)
     {
-        killCountLabel.text = $"Kills: {killCount}" + killHighscoreSuffix;
+        killCountLabel.text = $"{killCount}x";
     }
 
     private void EnableHighscoreUI(int newHighscore)
