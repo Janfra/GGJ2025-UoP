@@ -91,6 +91,7 @@ public class UI_Game : MonoBehaviour
         lostPopup.style.opacity = 1.0f;
         playerScore.AddScore(playTimer.GetTimerScore());
         playTimer.ResetTimer();
+        isPaused = true;
     }
 
     private void UpdateScoreLabel(int newScore)
