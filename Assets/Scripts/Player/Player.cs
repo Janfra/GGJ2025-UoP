@@ -39,4 +39,13 @@ public class Player : MonoBehaviour
             dirtiness = Mathf.Clamp01(dirtiness);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Retract"))
+        {
+            soap += Time.fixedDeltaTime;
+            dirtiness -= Time.fixedDeltaTime;
+        }
+    }
 }

@@ -18,7 +18,7 @@ public class UI_ScreenNotification : MonoBehaviour
 
     private void Start()
     {
-        Camera cam = Camera.main;
+        cam = Camera.main;
         pointerRenderer = GetComponent<Renderer>();
     }
 
