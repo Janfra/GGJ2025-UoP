@@ -443,8 +443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e94362048f885f46b8f66c9f49e03fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerRenderer: {fileID: 523703621}
   target: {fileID: 1586226871}
-  offset: {x: 35, y: 25}
+  offset: {x: 0.5, y: 0.25}
+  offscreenOffset: 0.05
 --- !u!212 &523703621
 SpriteRenderer:
   m_ObjectHideFlags: 0
