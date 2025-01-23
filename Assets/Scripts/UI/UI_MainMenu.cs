@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(UIDocument))]
 public class UI_MainMenu : MonoBehaviour
 {
-    public const string QuitButton = "Quit";
+    public const string QUIT_BUTTON = "Quit";
 
     [SerializeField]
     private UIDocument UI;
@@ -17,7 +18,7 @@ public class UI_MainMenu : MonoBehaviour
             UI = GetComponent<UIDocument>();
         }
 
-        Button quitButton = UI.rootVisualElement.Q<Button>(QuitButton);
+        Button quitButton = UI.rootVisualElement.Q<Button>(QUIT_BUTTON);
         if (quitButton != null )
         {
             quitButton.clicked += OnQuit;

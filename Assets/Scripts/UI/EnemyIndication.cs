@@ -7,7 +7,7 @@ public class EnemyIndication : MonoBehaviour
 {
     public static List<Transform> enemies = new();
     public Transform fountain;
-    public GameObject[] indicators = new GameObject[3];
+    public GameObject[] indicators;
 
     [SerializeField, Range(0.0f, 1.0f)]
     private float offscreenOffset;

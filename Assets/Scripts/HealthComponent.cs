@@ -5,6 +5,11 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour, IShootable
 {
     [SerializeField]
+    private PlayerScore playerScore;
+    [SerializeField]
+    private int onDeathScore = 5;
+
+    [SerializeField]
     private Animator animator;
     [SerializeField]
     private float health;
@@ -18,6 +23,8 @@ public class HealthComponent : MonoBehaviour, IShootable
 
     public void OnShot(ShootData data)
     {
+        if (IsDead()) return;  
+
         if (!isInvulnerable)
         {
             TakeDamage(data.damage);
@@ -28,11 +35,19 @@ public class HealthComponent : MonoBehaviour, IShootable
     {
         Debug.Log("ouch");
         health -= damage;
-        StartInvulnerabilityFrames();
-        
-        if (animator != null)
+
+        if (IsDead())
         {
-            StartDamagedAnimation();
+            // Replace with play animation that on event calls HandleDeath
+            HandleDeath();
+        }
+        else
+        {
+            StartInvulnerabilityFrames();
+            if (animator != null)
+            {
+                StartDamagedAnimation();
+            }
         }
     }
 
@@ -58,5 +73,22 @@ public class HealthComponent : MonoBehaviour, IShootable
 
         invulnerabilityRoutine = null;
         yield return null;
+    }
+
+    private bool IsDead()
+    {
+        return health <= 0.0f;
+    }
+
+    private void HandleDeath()
+    {
+        if (!playerScore)
+        {
+            throw new System.NullReferenceException($"The player score tracker has not been set in the health component for {name}, please set it.");
+        }
+
+        playerScore.AddKillCount();
+        playerScore.AddScore(onDeathScore);
+        gameObject.SetActive(false);
     }
 }

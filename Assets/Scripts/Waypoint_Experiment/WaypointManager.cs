@@ -44,6 +44,8 @@ public struct WaypointData
     public float Speed;
     public float DistanceTravelled;
     public Vector3 TargetPosition;
+    public Vector2 TargetPosition2D => TargetPosition;
+    public bool HasArrived => DistanceTravelled >= 1.0f;
 
     public WaypointData(Waypoint waypoint, int index)
     {
