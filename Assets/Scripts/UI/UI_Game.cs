@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
@@ -58,7 +59,9 @@ public class UI_Game : MonoBehaviour
         lostPopup = root.Q<VisualElement>(LOSTPOPUP_NAME);
         restartButton = root.Q<Button>(RESTART_NAME);
 
-        lostPopup.style.opacity = 0.0f;
+        lostPopup.style.display = DisplayStyle.None;
+
+        restartButton.clicked += OnRestart;
 
         playerScore.OnScored += UpdateScoreLabel;
         playerScore.OnKillAdded += UpdateKillCount;
@@ -88,10 +91,18 @@ public class UI_Game : MonoBehaviour
 
     private void OnGameFinished(float dirtiness)
     {
-        lostPopup.style.opacity = 1.0f;
+        lostPopup.style.display = DisplayStyle.Flex;
         playerScore.AddScore(playTimer.GetTimerScore());
         playTimer.ResetTimer();
         isPaused = true;
+    }
+
+    private void OnRestart()
+    {
+        playerScore.ClearScore();
+        // Just reload the scene for now
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
     private void UpdateScoreLabel(int newScore)

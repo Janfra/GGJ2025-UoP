@@ -107,7 +107,7 @@ public class WaterGun : BaseWeapon
         }
 
         Gizmos.color = Color.green;
-
+        
         Vector2 position = shooterData.Transform.position;
         position += GetShooterAimBorder();
 
