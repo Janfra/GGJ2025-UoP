@@ -21,6 +21,7 @@ public class PathFollow : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         }
 
+        speed += Random.Range(0.0f, 0.2f);
         transform.position = path.GetRandomStart(out movementData).transform.position;
         movementData.Speed = speed;
     }

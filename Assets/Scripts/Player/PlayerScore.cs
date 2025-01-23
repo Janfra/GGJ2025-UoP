@@ -10,6 +10,8 @@ public class PlayerScore : ScriptableObject
     public event ScoreUpdated OnNewHighscore;
     public event ScoreUpdated OnScored;
     public event ScoreUpdated OnScoredGetValue;
+    public event ScoreUpdated OnKillAdded;
+    public event ScoreUpdated OnNewKillHighscore;
 
     public int Highscore => highscore;
     private int highscore;
@@ -18,10 +20,40 @@ public class PlayerScore : ScriptableObject
     [NonSerialized]
     private int score;
 
+
+    public int KillHighscore => killHighscore;
+    private int killHighscore;
+
+    public int KillCount => killCount;
+    [NonSerialized]
+    private int killCount;
+
+    public void ResetHighscores()
+    {
+        highscore = 0;
+        killHighscore = 0;
+    }
+
     public void ClearScore()
     {
         score = 0;
         OnScored?.Invoke(score);
+    }
+
+    public void AddKillCount()
+    {
+        killCount++;
+        OnKillAdded?.Invoke(killCount);
+        TryUpdateKillHighscore();
+    }
+
+    private void TryUpdateKillHighscore()
+    {
+        if (killCount > killHighscore)
+        {
+            killHighscore = killCount;
+            OnNewKillHighscore?.Invoke(killHighscore);
+        }
     }
 
     public void AddScore(int addScore)
@@ -29,10 +61,10 @@ public class PlayerScore : ScriptableObject
         score += addScore;
         OnScored?.Invoke(score);
         OnScoredGetValue?.Invoke(addScore);
-        TryUpdateHighScore();
+        TryUpdateHighscore();
     }
     
-    private void TryUpdateHighScore()
+    private void TryUpdateHighscore()
     {
         if (score > highscore)
         {

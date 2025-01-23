@@ -23,6 +23,8 @@ public class HealthComponent : MonoBehaviour, IShootable
 
     public void OnShot(ShootData data)
     {
+        if (IsDead()) return;  
+
         if (!isInvulnerable)
         {
             TakeDamage(data.damage);
@@ -75,7 +77,7 @@ public class HealthComponent : MonoBehaviour, IShootable
 
     private bool IsDead()
     {
-        return health > 0.0f;
+        return health <= 0.0f;
     }
 
     private void HandleDeath()
@@ -85,6 +87,7 @@ public class HealthComponent : MonoBehaviour, IShootable
             throw new System.NullReferenceException($"The player score tracker has not been set in the health component for {name}, please set it.");
         }
 
+        playerScore.AddKillCount();
         playerScore.AddScore(onDeathScore);
         gameObject.SetActive(false);
     }
