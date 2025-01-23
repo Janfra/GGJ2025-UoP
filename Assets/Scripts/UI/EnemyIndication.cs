@@ -42,7 +42,7 @@ public class EnemyIndication : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if (enemies[i] != null)
+            if (enemies.Count > i)
             {
 
                 Vector2 offsetPercentage = new(offscreenOffset * Screen.width, offscreenOffset * Screen.height);
@@ -56,7 +56,7 @@ public class EnemyIndication : MonoBehaviour
                     float yPosition = Mathf.Clamp(targetScreenPoint.y, 0, Screen.height);
                     Vector2 clampScreenPoint = new(xPosition, yPosition);
                     Vector2 clampPosition = GetClampedPosition(cam.ScreenToWorldPoint(clampScreenPoint));
-                    transform.position = clampPosition;
+                    indicators[i].transform.SetPositionAndRotation(clampPosition, Quaternion.LookRotation(Vector3.forward, enemies[i].position - indicators[i].transform.position));
                     indicators[i].SetActive(true);
                 }
                 else
