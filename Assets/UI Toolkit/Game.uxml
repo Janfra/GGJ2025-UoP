@@ -2,4 +2,9 @@
     <ui:Label tabindex="-1" text="Timer:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Timer" style="font-size: 40px; -unity-font-style: bold; -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgb(255, 255, 255);" />
     <ui:Label tabindex="-1" text="Score: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" style="-unity-font-style: bold; font-size: 30px; -unity-text-outline-color: rgb(255, 255, 255); -unity-text-outline-width: 0.1px;" />
     <ui:Label tabindex="-1" text="Kills: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="KillCount" style="font-size: 30px; -unity-font-style: bold; -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgb(255, 255, 255);" />
+    <ui:ProgressBar value="0" title="DIRT" name="TownDirt" style="top: auto; bottom: 1%; position: absolute; right: auto; width: 90%; align-self: center; justify-content: center;" />
+    <ui:VisualElement name="LostPopup" style="flex-grow: 1; position: relative; display: flex;">
+        <ui:Label tabindex="-1" text="LOST GAME" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: center; align-items: center; -unity-font-style: bold; font-size: 100px; -unity-text-align: upper-center; top: auto; position: relative; right: auto;" />
+        <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Restart" style="width: 70%; height: 10%; justify-content: flex-start; align-self: center; font-size: 40px;" />
+    </ui:VisualElement>
 </ui:UXML>
