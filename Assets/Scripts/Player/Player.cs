@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed * (1f - dirtiness / 2);
+        //rb.velocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed * (1f - dirtiness / 2);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
