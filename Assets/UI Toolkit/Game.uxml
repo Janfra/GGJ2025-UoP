@@ -1,10 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Label tabindex="-1" text="Timer:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Timer" style="font-size: 40px; -unity-font-style: bold; -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgb(255, 255, 255);" />
-    <ui:Label tabindex="-1" text="Score: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" style="-unity-font-style: bold; font-size: 30px; -unity-text-outline-color: rgb(255, 255, 255); -unity-text-outline-width: 0.1px;" />
-    <ui:Label tabindex="-1" text="Kills: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="KillCount" style="font-size: 30px; -unity-font-style: bold; -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgb(255, 255, 255);" />
-    <ui:ProgressBar value="0" title="DIRT" name="TownDirt" style="top: auto; bottom: 1%; position: absolute; right: auto; width: 90%; align-self: center; justify-content: center;" />
-    <ui:VisualElement name="LostPopup" style="flex-grow: 1; position: relative; display: flex;">
-        <ui:Label tabindex="-1" text="LOST GAME" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: center; align-items: center; -unity-font-style: bold; font-size: 100px; -unity-text-align: upper-center; top: auto; position: relative; right: auto;" />
+    <Style src="project://database/Assets/UI%20Toolkit/StyleSheet/GameText.uss?fileID=7433441132597879392&amp;guid=2976255b29f08534fbf892828ebe58de&amp;type=3#GameText" />
+    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Timer" text="Timer" class="text" style="font-size: 40px; -unity-font-style: bold; top: 5%; align-self: center;" />
+    <ui:ProgressBar value="0" title="DIRT" name="TownDirt" style="top: 1%; bottom: auto; position: absolute; right: auto; width: 90%; align-self: center; justify-content: center; color: rgb(0, 0, 0); -unity-text-outline-color: rgba(0, 0, 0, 0); text-shadow: 0 0 0 rgba(0, 0, 0, 0); -unity-text-outline-width: 0; -unity-font-style: bold;" />
+    <ui:VisualElement name="LostPopup" style="flex-grow: 5; position: relative; display: flex; justify-content: center;">
+        <ui:Label tabindex="-1" text="LOST GAME" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text" style="justify-content: center; align-items: center; -unity-font-style: bold; font-size: 100px; -unity-text-align: upper-center; top: auto; position: relative; right: auto;" />
         <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Restart" style="width: 70%; height: 10%; justify-content: flex-start; align-self: center; font-size: 40px;" />
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; justify-content: flex-end; align-items: flex-end;">
+        <ui:VisualElement class="text" style="flex-grow: 1; align-self: auto; justify-content: flex-end; align-items: center;">
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="KillCount" enable-rich-text="true" style="font-size: 30px; -unity-font-style: bold; align-self: flex-end; -unity-text-align: middle-right; width: auto; min-width: auto; align-items: center; justify-content: flex-end;" />
+            <ui:Label tabindex="-1" text="Clean Score" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 30px; align-self: flex-end; -unity-text-align: upper-center; min-width: 10%; margin-bottom: 0;" />
+            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" style="-unity-font-style: bold; font-size: 30px; align-self: flex-end; -unity-text-align: upper-right; min-width: 10%; margin-top: 0;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

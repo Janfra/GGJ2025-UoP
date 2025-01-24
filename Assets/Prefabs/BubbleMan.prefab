@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6491584342742725269}
   - component: {fileID: 4711691870100320113}
   - component: {fileID: 4573742772800606705}
+  - component: {fileID: 8918690085660725945}
   m_Layer: 8
   m_Name: BubbleMan
   m_TagString: Untagged
@@ -182,3 +183,16 @@ MonoBehaviour:
   animator: {fileID: 0}
   health: 1
   invulnerabilityTime: 0.25
+--- !u!114 &8918690085660725945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5200284322668160003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a23d98e8ee4e5943953fc963adbd810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirtPrefab: {fileID: 8323657628736316566, guid: 5fde4a70bd00b5b45bffe11d54ac8db8, type: 3}
