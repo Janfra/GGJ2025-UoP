@@ -29,11 +29,12 @@ public class Player : MonoBehaviour
                 Destroy(collision.gameObject);
                 soap -= 0.01f;
                 soap = Mathf.Clamp01(soap);
-                dirtiness += 0.001f;
+                dirtiness += 0.01f;
+                TownDirtiness.Instance.Dirtiness -= 0.1f;
             }
             else
             {
-                dirtiness += 0.01f;
+                dirtiness += 0.05f;
             }
             dirtiness = Mathf.Clamp01(dirtiness);
         }
@@ -43,8 +44,10 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Retract"))
         {
-            soap += Time.fixedDeltaTime;
-            dirtiness -= Time.fixedDeltaTime;
+            soap += Time.fixedDeltaTime / 2f;
+            dirtiness -= Time.fixedDeltaTime / 2f;
+            soap = Mathf.Clamp01(soap);
+            dirtiness = Mathf.Clamp01(dirtiness);
         }
     }
 }

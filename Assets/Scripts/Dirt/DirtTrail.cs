@@ -18,7 +18,7 @@ public class DirtTrail : MonoBehaviour
     {
         if ((lastPosition - transform.position).sqrMagnitude > 0.1f)
         {
-            GameObject dirt = Instantiate(dirtPrefab, new(transform.position.x, transform.position.y), Quaternion.Euler(0f, 0f, Random.value * 360f));
+            GameObject dirt = Instantiate(dirtPrefab, new(transform.position.x, transform.position.y), Quaternion.identity);
             dirt.GetComponent<SpriteRenderer>().sortingOrder = index;
             index++;
             lastPosition = transform.position;

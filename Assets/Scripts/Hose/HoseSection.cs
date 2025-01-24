@@ -26,8 +26,8 @@ public class HoseSection : MonoBehaviour
     {
         if (transform.GetSiblingIndex() == 20 && Player.rb)
         {
-            //Player.rb.mass = 99999f - (Mathf.Sqrt((transform.position - GameObject.Find("Fountain").transform.position).magnitude) * 57734.4495687f);
-            Player.rb.mass = 99999f - ((transform.position - GameObject.Find("Fountain").transform.position).magnitude * 99999f);
+            Player.rb.mass = 99999f - (Mathf.Sqrt((transform.position - GameObject.Find("Fountain").transform.position).magnitude) * 57734.4495687f);
+            //Player.rb.mass = 99999f - ((transform.position).magnitude * 99999f);
         }
     }
 

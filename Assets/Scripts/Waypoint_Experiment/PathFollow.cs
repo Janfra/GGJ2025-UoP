@@ -8,9 +8,8 @@ public class PathFollow : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
-    private float speed;
-    [SerializeField]
-    private WaypointManager path;
+    public float speed;
+    public WaypointManager path;
     private WaypointData movementData;
 
     // Start is called before the first frame update

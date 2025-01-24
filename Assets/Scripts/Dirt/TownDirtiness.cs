@@ -6,6 +6,8 @@ public class TownDirtiness : MonoBehaviour
 {
     [SerializeField]
     private Animator fountainAnimator;
+    [SerializeField]
+    private GameObject gameOver;
 
     public static TownDirtiness Instance;
 
@@ -26,7 +28,13 @@ public class TownDirtiness : MonoBehaviour
                 fountainAnimator.SetTrigger("cleaner");
             }
 
-            dirtiness = value;
+            dirtiness = Mathf.Clamp(value, 0, 100);
+
+            if (dirtiness >= 100)
+            {
+                gameOver.SetActive(true);
+                Time.timeScale = 0f;
+            }
         }
     }
 

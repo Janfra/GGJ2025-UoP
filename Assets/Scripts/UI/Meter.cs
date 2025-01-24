@@ -14,12 +14,13 @@ public class Meter : MonoBehaviour
 
     private void Update()
     {
-        rt.sizeDelta = new(280f * stat switch { Stat.Soap => Player.soap, Stat.Dirtiness => Player.dirtiness, _ => throw new System.NotImplementedException() }, 30f);
+        rt.sizeDelta = new(stat switch { Stat.Soap => Player.soap * 130f, Stat.Dirtiness => Player.dirtiness * 130f, Stat.TownDirtiness => TownDirtiness.Instance.Dirtiness * 270f / 100f, _ => throw new System.NotImplementedException() }, 13f);
     }
 
     private enum Stat
     {
         Soap,
-        Dirtiness
+        Dirtiness,
+        TownDirtiness
     }
 }

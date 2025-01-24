@@ -8,7 +8,7 @@ public class InputShooting : MonoBehaviour
     private Transform aimAid;
     [SerializeField]
     private BaseWeapon weapon;
-    private ShooterData shooterData = new ShooterData();
+    public static ShooterData shooterData = new ShooterData();
 
     private void Start()
     {

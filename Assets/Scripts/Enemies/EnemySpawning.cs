@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawning : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
     private float lastSpawnTime;
     private float spawnDelay = 5;
@@ -13,8 +13,10 @@ public class EnemySpawning : MonoBehaviour
     {
         if (Time.time - lastSpawnTime > spawnDelay)
         {
-            EnemyIndication.enemies.Add(Instantiate(enemyPrefab, spawnPoints[Random.Range(0, 4)].position, Quaternion.identity).transform);
-            spawnDelay *= 0.9f;
+            GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, 3)], spawnPoints[Random.Range(0, 4)].position, Quaternion.identity);
+            EnemyIndication.enemies.Add(enemy.transform);
+            enemy.GetComponent<PathFollow>().path = GameObject.Find("Paths").GetComponent<WaypointManager>();
+            spawnDelay *= 0.95f;
             lastSpawnTime = Time.time;
         }
     }

@@ -8,7 +8,8 @@ public class HealthComponent : MonoBehaviour, IShootable
     private PlayerScore playerScore;
     [SerializeField]
     private int onDeathScore = 5;
-
+    [SerializeField]
+    private Sprite deathBubbles;
     [SerializeField]
     private Animator animator;
     [SerializeField]
@@ -89,6 +90,13 @@ public class HealthComponent : MonoBehaviour, IShootable
 
         playerScore.AddKillCount();
         playerScore.AddScore(onDeathScore);
+        StartCoroutine(Die());
+    }
+
+    private IEnumerator Die()
+    {
+        GetComponent<SpriteRenderer>().sprite = deathBubbles;
+        yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
     }
 }

@@ -20,7 +20,7 @@ public class WaterGun : BaseWeapon
     private float rotationSpeed;
 
     private int circleCount;
-    private float currentRange;
+    public static float currentRange;
     private float duration;
     private float rangePercentage;
     private Coroutine growingRange;
