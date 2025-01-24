@@ -19,6 +19,11 @@ public class Dirt : MonoBehaviour
         townDirtTracker.AddDirtiness(dirtiness);
     }
 
+    private void Update()
+    {
+        townDirtTracker.AddDirtiness(dirtiness - TownDirtTracker.TownDirtiness);
+    }
+
     private void OnDestroy()
     {
         townDirtTracker.RemoveDirtiness(dirtiness);

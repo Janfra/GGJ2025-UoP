@@ -9,13 +9,25 @@ public class HoseSection : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        HingeJoint2D hinge = GetComponent<HingeJoint2D>();
+        if (transform.GetSiblingIndex() != 0)
+        {
+            hinge.connectedBody = transform.parent.GetChild(transform.GetSiblingIndex() - 1).GetComponent<Rigidbody2D>();
+        }
+
+        if (transform.GetSiblingIndex() >= 5)
+        {
+            rb.MovePosition(Vector2.zero);
+        }
     }
 
     private void Update()
     {
         if (transform.GetSiblingIndex() == 20 && Player.rb)
         {
-            Player.rb.mass = 99999f - (Mathf.Sqrt((transform.position - GameObject.Find("Fountain").transform.position).magnitude) * 57734.4495687f);
+            //Player.rb.mass = 99999f - (Mathf.Sqrt((transform.position - GameObject.Find("Fountain").transform.position).magnitude) * 57734.4495687f);
+            Player.rb.mass = 99999f - ((transform.position - GameObject.Find("Fountain").transform.position).magnitude * 99999f);
         }
     }
 
@@ -23,7 +35,7 @@ public class HoseSection : MonoBehaviour
     {
         if (collision.CompareTag("Retract"))
         {
-            rb.AddForce((GameObject.Find("Fountain").transform.position - transform.position).normalized * 500f);
+            rb.AddForce((-transform.position).normalized * 700f);
         }
     }
 

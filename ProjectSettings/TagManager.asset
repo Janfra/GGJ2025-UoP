@@ -47,6 +47,9 @@ TagManager:
   - name: Dirt
     uniqueID: 2546671809
     locked: 0
+  - name: Hose
+    uniqueID: 1903636665
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

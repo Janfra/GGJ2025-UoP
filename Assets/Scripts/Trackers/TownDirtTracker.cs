@@ -15,9 +15,9 @@ public class TownDirtTracker : ScriptableObject
     [SerializeField]
     private float maxDirtiness;
 
-    public float TownDirtiness => TownDirtiness;
+    public static float TownDirtiness => townDirtiness;
     [NonSerialized]
-    private float townDirtiness;
+    private static float townDirtiness;
 
     public void AddDirtiness(float dirtiness)
     {

@@ -22,6 +22,7 @@ public class DirtTrail : MonoBehaviour
             dirt.GetComponent<SpriteRenderer>().sortingOrder = index;
             index++;
             lastPosition = transform.position;
+            TownDirtiness.Instance.Dirtiness += 0.1f;
         }
     }
 }
