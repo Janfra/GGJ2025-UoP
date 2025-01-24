@@ -36,7 +36,7 @@ public class InputMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         lastFrameInput = instantInput;
         instantInput = new Vector2(Input.GetAxis("Instant Horizontal"), Input.GetAxis("Instant Vertical"));
@@ -52,7 +52,7 @@ public class InputMovement : MonoBehaviour
             input = Vector2.Lerp(input, Vector2.zero, decceleration);
         }
 
-        if (rb.velocity.sqrMagnitude == 0)
+        if (rb.velocity.sqrMagnitude < 0.01f)
         {
             animator.SetBool("walking", false);
         }
@@ -70,7 +70,18 @@ public class InputMovement : MonoBehaviour
         {
             animator.SetBool("walking", true);
             animator.SetInteger("direction", 1);
+
+            if (rb.velocity.x > 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
+
+        Camera.main.transform.position = new(transform.position.x, transform.position.y, -10);
     }
 
     private void UpdateSpeed()
